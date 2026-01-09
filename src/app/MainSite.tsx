@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { OpeningCard } from './components/OpeningCard';
-import { MusicPlayer } from './components/MusicPlayer';
 import { FloatingButtons } from './components/FloatingButtons';
 import { HeroSection } from './components/HeroSection';
 import { IntroSection } from './components/IntroSection';
@@ -10,6 +9,7 @@ import { LoveStoryTimeline } from './components/LoveStoryTimeline';
 import { GallerySection } from './components/GallerySection';
 import { WishesSection } from './components/WishesSection';
 import { RsvpSection } from './components/RsvpSection';
+import { CtaSection } from './components/CtaSection';
 import { FooterSection } from './components/FooterSection';
 import { BackgroundEffect } from './components/BackgroundEffect';
 import { ScrollReveal } from './components/ui/ScrollReveal';
@@ -18,7 +18,6 @@ import { useWeddingData } from '../context/WeddingDataContext';
 export function MainSite() {
   const { data } = useWeddingData();
   const [showContent, setShowContent] = useState(false);
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   // Set dynamic page title
   useEffect(() => {
@@ -29,11 +28,6 @@ export function MainSite() {
 
   const handleOpenInvitation = () => {
     setShowContent(true);
-    setIsMusicPlaying(true);
-  };
-
-  const toggleMusic = () => {
-    setIsMusicPlaying(!isMusicPlaying);
   };
 
   return (
@@ -54,10 +48,10 @@ export function MainSite() {
           <ScrollReveal animation="fade-up"><GallerySection /></ScrollReveal>
           <ScrollReveal animation="fade-up"><WishesSection /></ScrollReveal>
           <ScrollReveal animation="scale-in"><RsvpSection /></ScrollReveal>
+          <ScrollReveal animation="fade-up"><CtaSection /></ScrollReveal>
           <FooterSection />
 
           {/* Floating Controls */}
-          <MusicPlayer isPlaying={isMusicPlaying} onToggle={toggleMusic} />
           <FloatingButtons />
         </div>
       )}
