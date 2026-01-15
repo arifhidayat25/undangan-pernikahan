@@ -1,20 +1,26 @@
 import { useState } from 'react';
 import { useWeddingData } from '../../../context/WeddingDataContext';
 import { RefreshCw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function EventEditor() {
+  const { t } = useTranslation();
   const { data, updateData } = useWeddingData();
   const [event, setEvent] = useState(data.event);
 
   const formatIndonesianDate = (dateString: string) => {
     const date = new Date(dateString);
+    const day = date.getDate();
+    const year = date.getFullYear();
+    // Use proper locale formatting based on selection? For now preserving original logic but could be improved.
+    // Ideally this date format should also support English if the admin panel switches language.
+    // But since the output "Minggu, 15 Juni 2026" is likely intended for the Indonesian invitation context, sticking to ID might be safer unless requested.
+    // However, let's stick to the current implementation but maybe consider using toLocaleString if we want dynamic.
     const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
     const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
     
     const dayName = days[date.getDay()];
-    const day = date.getDate();
     const month = months[date.getMonth()];
-    const year = date.getFullYear();
     
     return `${dayName}, ${day} ${month} ${year}`;
   };
@@ -45,23 +51,20 @@ export function EventEditor() {
     <div className="space-y-8">
       <div>
         <h2 className="text-3xl text-[var(--color-secondary)] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Detail Acara
+          {t('admin.event.title')}
         </h2>
         <p className="text-[#8B5E66] mb-8" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-          Edit informasi waktu dan lokasi acara pernikahan
+          {t('admin.event.subtitle')}
         </p>
       </div>
 
       {/* Wedding Date */}
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80">
         <h3 className="text-xl text-[var(--color-primary)] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Tanggal Pernikahan
+          {t('admin.event.wedding_date')}
         </h3>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-          <p className="text-sm text-blue-800">
-            💡 <strong>Auto-sync:</strong> Tanggal Akad & Resepsi otomatis mengikuti tanggal ini. 
-            Jika ingin tanggal berbeda, edit manual di bawah.
-          </p>
+          <p className="text-sm text-blue-800" dangerouslySetInnerHTML={{ __html: t('admin.event.auto_sync_info') }} />
         </div>
         <input
           type="datetime-local"
@@ -74,11 +77,11 @@ export function EventEditor() {
       {/* Ceremony */}
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80">
         <h3 className="text-xl text-[var(--color-primary)] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Akad Nikah
+          {t('admin.event.ceremony')}
         </h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Judul</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_title')}</label>
             <input
               type="text"
               value={event.ceremony.title}
@@ -87,7 +90,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Tanggal</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_date')}</label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -99,15 +102,15 @@ export function EventEditor() {
               <button
                 onClick={() => syncDateFromMain('ceremony')}
                 className="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-1"
-                title="Sync dari tanggal utama"
+                title={t('admin.event.sync_btn')}
               >
                 <RefreshCw className="w-4 h-4" />
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-1">Klik tombol sync untuk auto-fill dari tanggal utama</p>
+            <p className="text-xs text-gray-500 mt-1">{t('admin.event.sync_hint')}</p>
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Waktu</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_time')}</label>
             <input
               type="text"
               value={event.ceremony.time}
@@ -117,7 +120,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Tempat</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_venue')}</label>
             <input
               type="text"
               value={event.ceremony.venue}
@@ -126,7 +129,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Alamat</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_address')}</label>
             <input
               type="text"
               value={event.ceremony.address}
@@ -135,7 +138,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Google Calendar URL</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_gcal')}</label>
             <input
               type="text"
               value={event.ceremony.googleCalendarUrl}
@@ -149,11 +152,11 @@ export function EventEditor() {
       {/* Reception */}
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80">
         <h3 className="text-xl text-[var(--color-primary)] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Resepsi
+          {t('admin.event.reception')}
         </h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Judul</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_title')}</label>
             <input
               type="text"
               value={event.reception.title}
@@ -162,7 +165,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Tanggal</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_date')}</label>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -174,15 +177,15 @@ export function EventEditor() {
               <button
                 onClick={() => syncDateFromMain('reception')}
                 className="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-1"
-                title="Sync dari tanggal utama"
+                title={t('admin.event.sync_btn')}
               >
                 <RefreshCw className="w-4 h-4" />
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-1">Klik tombol sync untuk auto-fill dari tanggal utama</p>
+            <p className="text-xs text-gray-500 mt-1">{t('admin.event.sync_hint')}</p>
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Waktu</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_time')}</label>
             <input
               type="text"
               value={event.reception.time}
@@ -192,7 +195,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Tempat</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_venue')}</label>
             <input
               type="text"
               value={event.reception.venue}
@@ -201,7 +204,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Alamat</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_address')}</label>
             <input
               type="text"
               value={event.reception.address}
@@ -210,7 +213,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Google Calendar URL</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.label_gcal')}</label>
             <input
               type="text"
               value={event.reception.googleCalendarUrl}
@@ -224,11 +227,11 @@ export function EventEditor() {
       {/* Maps */}
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80">
         <h3 className="text-xl text-[var(--color-primary)] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Google Maps
+          {t('admin.event.maps_title')}
         </h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Embed URL</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.embed_url')}</label>
             <textarea
               value={event.mapEmbedUrl}
               onChange={(e) => handleChange('root', 'mapEmbedUrl', e.target.value)}
@@ -238,7 +241,7 @@ export function EventEditor() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">Direction URL</label>
+            <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">{t('admin.event.direction_url')}</label>
             <input
               type="text"
               value={event.mapDirectionUrl}

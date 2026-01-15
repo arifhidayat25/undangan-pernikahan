@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useWeddingData } from '../../../context/WeddingDataContext';
 import { Plus, Trash2, Upload, X, GripVertical } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function GalleryEditor() {
+  const { t } = useTranslation();
   const { data, updateData } = useWeddingData();
   const [gallery, setGallery] = useState(data.gallery);
 
@@ -54,10 +56,10 @@ export function GalleryEditor() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-3xl text-[var(--color-secondary)] mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Galeri Foto
+            {t('admin.gallery.title')}
           </h2>
           <p className="text-[#8B5E66]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            Upload foto-foto untuk galeri
+            {t('admin.gallery.subtitle')}
           </p>
         </div>
         <button
@@ -65,7 +67,7 @@ export function GalleryEditor() {
           className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[#A8636B] transition-colors"
         >
           <Plus className="w-4 h-4" />
-          Tambah Foto
+          {t('admin.gallery.add_photo')}
         </button>
       </div>
 
@@ -120,7 +122,7 @@ export function GalleryEditor() {
                       }}
                     />
                     <Upload className="w-8 h-8 text-[var(--color-primary)]/50 mb-2" />
-                    <span className="text-sm text-gray-500">Upload Foto</span>
+                    <span className="text-sm text-gray-500">{t('admin.gallery.upload_text')}</span>
                   </label>
                 )}
 
@@ -130,7 +132,7 @@ export function GalleryEditor() {
                     value={item.caption || ''}
                     onChange={(e) => handleChange(item.id, 'caption', e.target.value)}
                     className="w-full px-3 py-2 text-sm rounded-lg border border-[var(--color-primary)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
-                    placeholder="Caption (opsional)"
+                    placeholder={t('admin.gallery.caption_placeholder')}
                   />
                 </div>
               </div>
@@ -148,7 +150,7 @@ export function GalleryEditor() {
 
       {gallery.length === 0 && (
         <div className="text-center py-12 text-gray-500">
-          Belum ada foto. Klik tombol "Tambah Foto" untuk menambahkan.
+          {t('admin.gallery.empty_state')}
         </div>
       )}
     </div>

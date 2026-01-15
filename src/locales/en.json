@@ -1,0 +1,228 @@
+{
+  "opening": {
+    "wedding_of": "The Wedding of",
+    "open_btn": "Open Invitation",
+    "click_hint": "Click seal to open"
+  },
+  "hero": {
+    "wedding_of": "The Wedding of",
+    "official_invitation": "Official Invitation"
+  },
+  "countdown": {
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "subtitle": "Countdown To",
+    "title": "Our Happy Day"
+  },
+  "rsvp": {
+      "title": "RSVP",
+      "name_label": "Name",
+      "name_placeholder": "Enter your name",
+      "attendance_label": "Will you attend?",
+      "message_label": "Message",
+      "message_placeholder": "Write your wishes & prayers for us...",
+      "submit_btn": "Send RSVP",
+      "attending": "Will Attend",
+      "not_attending": "Cannot Attend",
+      "guests_label": "Number of Guests",
+      "person": "Person",
+      "deadline_prefix": "Please RSVP before",
+      "success_title": "Thank You!",
+      "success_message": "Your RSVP has been sent."
+  },
+  "details": {
+      "save_the_date": "Save the Date",
+      "title": "Time & Location",
+      "add_to_calendar": "Add to Calendar",
+      "location_title": "Event Location",
+      "map_hint": "Click to Explore Map",
+      "open_maps": "Open Google Maps",
+      "copy_address": "Copy Address",
+      "address_copied": "Address Copied!"
+  },
+  "footer": {
+      "share_moment": "Share Your Moments",
+      "use_hashtag": "Use this hashtag on social media",
+      "wedding_gift": "Wedding Gift",
+      "gift_message": "Your presence is the greatest gift. However, if you wish to give a gift, we have prepared a wedding registry.",
+      "view_registry": "View Wedding Registry",
+      "thank_you": "Thank You for Your Prayers & Presence",
+      "made_with": "Made with",
+      "by": "by",
+      "rights_reserved": "All Rights Reserved"
+  },
+  "cta": {
+      "promo_badge": "Special Promo - 20% Off",
+      "title": "Love this Invitation? 💕",
+      "subtitle": "Create an elegant and modern digital wedding invitation.",
+      "subtitle_highlight": "Free revision, custom design, and admin panel to manage it yourself!",
+      "feature_couples": "100+ Couples",
+      "feature_ordered": "Have Ordered",
+      "feature_rating": "Rating 4.9/5",
+      "feature_reviews": "From 50+ Reviews",
+      "feature_package": "Complete Package",
+      "feature_price": "Starts from 100K",
+      "whatsapp_btn": "Order via WhatsApp",
+      "pricing_btn": "View Packages & Prices",
+      "trust_badge": "✨ Fast process • 24/7 Support"
+  },
+  "gallery": {
+      "pretitle": "Our Memories",
+      "title": "Moment Gallery",
+      "description": "Every second is a priceless memory."
+  },
+  "wishes": {
+      "pretitle": "Wedding Wishes",
+      "title": "Wishes & Prayers",
+      "description": "Send your best wishes and prayers for us",
+      "name_placeholder": "Your Name",
+      "message_placeholder": "Write your wishes and prayers for us...",
+      "submit_btn": "Send Wish",
+      "submitting": "Sending...",
+      "count_label": "Wishes"
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Panel",
+      "subtitle": "Enter password to continue",
+      "password_label": "Password",
+      "password_placeholder": "Enter password",
+      "submit_btn": "Login",
+      "error_msg": "Wrong password!",
+      "hint": "Hint: password = \"password\""
+    },
+    "layout": {
+      "title": "Admin Panel",
+      "unsaved_changes": "Unsaved Changes",
+      "save": "Save",
+      "export": "Export",
+      "import": "Import",
+      "reset": "Reset",
+      "preview": "Preview",
+      "logout_confirm": "Unsaved changes. Are you sure you want to leave?",
+      "menu": {
+        "couple": "Couple Data",
+        "event": "Event Details",
+        "intro": "Intro Message",
+        "love_story": "Love Story",
+        "gallery": "Photo Gallery",
+        "theme": "Theme Colors",
+        "rsvp": "RSVP Data"
+      }
+    },
+    "dashboard": {
+      "welcome": "Welcome to Admin Panel",
+      "description": "Manage all your wedding invitation data in one place.",
+      "stat_couple": "Couple",
+      "stat_event": "Events",
+      "stat_gallery": "Gallery",
+      "stat_wishes": "Wishes",
+      "quick_actions": "Quick Actions",
+      "action_preview": "Preview Website",
+      "action_rsvp": "Check RSVP"
+    },
+    "couple": {
+      "title": "Couple Data",
+      "subtitle": "Edit bride and groom information",
+      "bride": "Bride",
+      "groom": "Groom",
+      "nickname": "Nickname",
+      "fullname": "Full Name",
+      "parents": "Parents (Optional)",
+      "photo": "Photo (Optional)",
+      "upload_photo": "Upload Photo"
+    },
+    "event": {
+      "title": "Event Details",
+      "subtitle": "Edit wedding time and location information",
+      "wedding_date": "Wedding Date",
+      "auto_sync_info": "💡 <strong>Auto-sync:</strong> Ceremony & Reception dates automatically follow this date. Edit manually below if different.",
+      "ceremony": "Ceremony",
+      "reception": "Reception",
+      "label_title": "Title",
+      "label_date": "Date",
+      "label_time": "Time",
+      "label_venue": "Venue",
+      "label_address": "Address",
+      "label_gcal": "Google Calendar URL",
+      "sync_btn": "Sync from main date",
+      "sync_hint": "Click sync button to auto-fill from main date",
+      "maps_title": "Google Maps",
+      "embed_url": "Embed URL",
+      "direction_url": "Direction URL"
+    },
+    "gallery": {
+      "title": "Photo Gallery",
+      "subtitle": "Upload photos for gallery",
+      "add_photo": "Add Photo",
+      "upload_text": "Upload Photo",
+      "caption_placeholder": "Caption (optional)",
+      "empty_state": "No photos yet. Click \"Add Photo\" button to add."
+    },
+    "intro": {
+      "title": "Intro Message",
+      "subtitle": "Edit intro text and hero background",
+      "hero_bg": "Hero Section Background",
+      "hero_bg_hint": "Recommended size: 1920x1080px (landscape) | Max: 2MB (for upload)",
+      "upload_file": "Upload File",
+      "use_url": "Use URL",
+      "click_upload": "Click to upload image",
+      "paste_url": "Paste image URL from Unsplash, Imgur, or other hosting",
+      "label_subtitle": "Subtitle",
+      "label_title": "Title",
+      "label_message": "Message",
+      "hint_subtitle": "Small text above main title",
+      "hint_title": "Main title of intro section",
+      "hint_message": "Full invitation message",
+      "preview": "Preview"
+    },
+    "love_story": {
+      "title": "Love Story Timeline",
+      "subtitle": "Edit your love journey timeline",
+      "add_btn": "Add",
+      "year": "Year",
+      "story_title": "Title",
+      "description": "Description",
+      "empty_state": "No timeline yet. Click \"Add\" button to add."
+    },
+    "theme": {
+      "title": "Theme Colors",
+      "subtitle": "Customize website color theme",
+      "primary": "Primary Color",
+      "secondary": "Secondary Color",
+      "accent": "Accent Color",
+      "hint_primary": "Main color (buttons, accents, etc)",
+      "hint_secondary": "Secondary color (headings text, etc)",
+      "hint_accent": "Accent color (decorations, borders, etc)",
+      "presets": "Preset Themes",
+      "preview": "Preview",
+      "note": "<strong>Note:</strong> Theme color changes require page refresh to be fully applied across the website."
+    },
+    "rsvp": {
+      "title": "RSVP Data",
+      "subtitle": "Manage and export guest confirmation data",
+      "export_csv": "Export CSV",
+      "clear_all": "Delete All",
+      "total_response": "Total Responses",
+      "attending": "Attending",
+      "not_attending": "Not Attending",
+      "total_guests": "Total Guests",
+      "empty_state": "No RSVP data yet",
+      "table": {
+        "no": "No",
+        "name": "Name",
+        "guests": "Guests",
+        "attendance": "Attendance",
+        "message": "Message",
+        "time": "Submit Time",
+        "status_present": "Present",
+        "status_absent": "Absent"
+      }
+    }
+  },
+  "common": {
+      "loading": "Loading..."
+  }
+}

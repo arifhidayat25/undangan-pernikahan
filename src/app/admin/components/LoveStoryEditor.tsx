@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useWeddingData } from '../../../context/WeddingDataContext';
 import { Plus, Trash2, GripVertical } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function LoveStoryEditor() {
+  const { t } = useTranslation();
   const { data, updateData } = useWeddingData();
   const [loveStory, setLoveStory] = useState(data.loveStory);
 
@@ -47,10 +49,10 @@ export function LoveStoryEditor() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-3xl text-[var(--color-secondary)] mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Love Story Timeline
+            {t('admin.love_story.title')}
           </h2>
           <p className="text-[#8B5E66]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            Edit timeline perjalanan cinta Anda
+            {t('admin.love_story.subtitle')}
           </p>
         </div>
         <button
@@ -58,7 +60,7 @@ export function LoveStoryEditor() {
           className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[#A8636B] transition-colors"
         >
           <Plus className="w-4 h-4" />
-          Tambah
+          {t('admin.love_story.add_btn')}
         </button>
       </div>
 
@@ -90,7 +92,7 @@ export function LoveStoryEditor() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-                      Tahun
+                      {t('admin.love_story.year')}
                     </label>
                     <input
                       type="text"
@@ -101,7 +103,7 @@ export function LoveStoryEditor() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-                      Judul
+                      {t('admin.love_story.story_title')}
                     </label>
                     <input
                       type="text"
@@ -113,7 +115,7 @@ export function LoveStoryEditor() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-                    Deskripsi
+                    {t('admin.love_story.description')}
                   </label>
                   <textarea
                     value={item.description}
@@ -137,7 +139,7 @@ export function LoveStoryEditor() {
 
       {loveStory.length === 0 && (
         <div className="text-center py-12 text-gray-500">
-          Belum ada timeline. Klik tombol "Tambah" untuk menambahkan.
+          {t('admin.love_story.empty_state')}
         </div>
       )}
     </div>

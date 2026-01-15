@@ -1,16 +1,22 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useWeddingData } from '../../context/WeddingDataContext';
 
 export function HeroSection() {
   const { data } = useWeddingData();
+  const { t, i18n } = useTranslation();
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 200]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const textY = useTransform(scrollY, [0, 500], [0, 100]);
   
   const weddingDate = new Date(data.event.weddingDate);
-  const formattedDate = `${weddingDate.getDate().toString().padStart(2, '0')} . ${(weddingDate.getMonth() + 1).toString().padStart(2, '0')} . ${weddingDate.getFullYear()}`; 
+  const formattedDate = weddingDate.toLocaleDateString(i18n.language === 'id' ? 'id-ID' : 'en-US', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  }); // Using locale aware date formatting 
 
   const scrollToNext = () => {
     const nextSection = document.getElementById('intro-section');
@@ -86,7 +92,7 @@ export function HeroSection() {
                  animate={{ opacity: 1 }}
                  transition={{ delay: 1, duration: 1 }}
             >
-                The Wedding of
+                {t('hero.wedding_of')}
             </motion.p>
           </motion.div>
 
@@ -101,7 +107,7 @@ export function HeroSection() {
             <div className="flex items-center justify-center gap-6">
                 <div className="h-[1px] w-12 bg-white/60 shadow-sm" />
                 <p className="text-xl md:text-2xl tracking-[0.2em] uppercase text-white font-light drop-shadow-sm" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                  Official Invitation
+                  {t('hero.official_invitation')}
                 </p>
                 <div className="h-[1px] w-12 bg-white/60 shadow-sm" />
             </div>

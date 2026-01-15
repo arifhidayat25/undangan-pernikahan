@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { X, ZoomIn } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const photos = [
   {
@@ -31,6 +32,7 @@ const photos = [
 ];
 
 export function GallerySection() {
+  const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
@@ -43,19 +45,19 @@ export function GallerySection() {
            transition={{ duration: 0.6 }}
         >
              <p className="text-2xl text-[var(--color-primary)] mb-2" style={{ fontFamily: "'Great Vibes', cursive" }}>
-                Our Memories
+                {t('gallery.pretitle')}
             </p>
             <h2
                 className="text-4xl md:text-5xl text-[var(--color-secondary)]"
                 style={{ fontFamily: "'Playfair Display', serif" }}
             >
-                Galeri Momen
+                {t('gallery.title')}
             </h2>
              <p
                 className="mt-4 text-[var(--color-secondary)]"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-                Setiap detik adalah kenangan yang tak ternilai.
+                {t('gallery.description')}
             </p>
         </motion.div>
       </div>

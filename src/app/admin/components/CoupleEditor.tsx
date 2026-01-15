@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useWeddingData } from '../../../context/WeddingDataContext';
 import { Upload, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function CoupleEditor() {
+  const { t } = useTranslation();
   const { data, updateData } = useWeddingData();
   const [couple, setCouple] = useState(data.couple);
 
@@ -37,10 +39,10 @@ export function CoupleEditor() {
           className="text-3xl text-[var(--color-secondary)] mb-6"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
-          Data Pasangan
+          {t('admin.couple.title')}
         </h2>
         <p className="text-[#8B5E66] mb-8" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-          Edit informasi mempelai wanita dan pria
+          {t('admin.couple.subtitle')}
         </p>
       </div>
 
@@ -50,13 +52,13 @@ export function CoupleEditor() {
           className="text-2xl text-[var(--color-primary)] mb-6"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
-          Mempelai Wanita
+          {t('admin.couple.bride')}
         </h3>
 
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-              Nama Panggilan
+              {t('admin.couple.nickname')}
             </label>
             <input
               type="text"
@@ -69,7 +71,7 @@ export function CoupleEditor() {
 
           <div>
             <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-              Nama Lengkap
+              {t('admin.couple.fullname')}
             </label>
             <input
               type="text"
@@ -82,7 +84,7 @@ export function CoupleEditor() {
 
           <div>
             <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-              Nama Orang Tua (Opsional)
+              {t('admin.couple.parents')}
             </label>
             <input
               type="text"
@@ -95,7 +97,7 @@ export function CoupleEditor() {
 
           <div>
             <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-              Foto (Opsional)
+              {t('admin.couple.photo')}
             </label>
             {couple.bride.photo ? (
               <div className="relative inline-block">
@@ -135,13 +137,13 @@ export function CoupleEditor() {
           className="text-2xl text-[var(--color-primary)] mb-6"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
-          Mempelai Pria
+          {t('admin.couple.groom')}
         </h3>
 
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-              Nama Panggilan
+              {t('admin.couple.nickname')}
             </label>
             <input
               type="text"
@@ -154,7 +156,7 @@ export function CoupleEditor() {
 
           <div>
             <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-              Nama Lengkap
+              {t('admin.couple.fullname')}
             </label>
             <input
               type="text"
@@ -167,7 +169,7 @@ export function CoupleEditor() {
 
           <div>
             <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-              Nama Orang Tua (Opsional)
+              {t('admin.couple.parents')}
             </label>
             <input
               type="text"
@@ -180,7 +182,7 @@ export function CoupleEditor() {
 
           <div>
             <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-              Foto (Opsional)
+              {t('admin.couple.photo')}
             </label>
             {couple.groom.photo ? (
               <div className="relative inline-block">

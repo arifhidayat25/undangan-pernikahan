@@ -1,9 +1,11 @@
 import { motion } from 'motion/react';
 import { Gift, Heart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useWeddingData } from '../../context/WeddingDataContext';
 
 export function FooterSection() {
   const { data } = useWeddingData();
+  const { t } = useTranslation();
   
   // Generate hashtag from couple names and wedding year
   const getHashtag = () => {
@@ -43,7 +45,7 @@ export function FooterSection() {
             className="text-sm tracking-widest uppercase text-[var(--color-primary)] mb-2"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Bagikan Momen Anda
+            {t('footer.share_moment')}
           </p>
           <h3
             className="text-3xl md:text-4xl mb-4 text-[#F4C2C2]"
@@ -55,7 +57,7 @@ export function FooterSection() {
             className="text-sm text-[#DCAE96]"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Gunakan hashtag ini di media sosial Anda
+            {t('footer.use_hashtag')}
           </p>
         </motion.div>
 
@@ -82,7 +84,7 @@ export function FooterSection() {
               className="text-sm tracking-widest uppercase text-[var(--color-primary)]"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              Wedding Gift
+              {t('footer.wedding_gift')}
             </p>
           </div>
 
@@ -90,8 +92,7 @@ export function FooterSection() {
             className="text-[#DCAE96] mb-4"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Kehadiran Anda adalah hadiah terbesar bagi kami. Namun jika Anda ingin memberikan hadiah,
-            kami telah menyiapkan wedding registry.
+            {t('footer.gift_message')}
           </p>
 
           <motion.a
@@ -105,7 +106,7 @@ export function FooterSection() {
               className="relative z-10 group-hover:text-white transition-colors"
               initial={false}
             >
-              Lihat Wedding Registry
+              {t('footer.view_registry')}
             </motion.span>
             <motion.div
               className="absolute inset-0 bg-[var(--color-primary)]"
@@ -134,7 +135,7 @@ export function FooterSection() {
             className="text-lg md:text-xl mb-4 text-[#F4C2C2]"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Terima Kasih Atas Doa & Kehadiran Anda
+            {t('footer.thank_you')}
           </p>
 
           <p
@@ -150,9 +151,9 @@ export function FooterSection() {
               className="text-xs text-[#DCAE96]/80 mb-2 flex items-center justify-center gap-2"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              <span>Made with</span>
+              <span>{t('footer.made_with')}</span>
               <Heart className="w-3 h-3 text-[var(--color-primary)] animate-pulse" fill="var(--color-primary)" />
-              <span>by</span>
+              <span>{t('footer.by')}</span>
               <a 
                 href="https://github.com/arifhidayat25" 
                 target="_blank" 
@@ -166,7 +167,7 @@ export function FooterSection() {
               className="text-xs text-[#DCAE96]/60"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              © {getYear()} {getCoupleNames()} Wedding • All Rights Reserved
+              © {getYear()} {getCoupleNames()} Wedding • {t('footer.rights_reserved')}
             </p>
           </div>
         </motion.div>

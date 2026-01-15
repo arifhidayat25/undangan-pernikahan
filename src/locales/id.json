@@ -1,0 +1,228 @@
+{
+  "opening": {
+    "wedding_of": "Undangan Pernikahan",
+    "open_btn": "Buka Undangan",
+    "click_hint": "Klik segel untuk membuka"
+  },
+  "hero": {
+    "wedding_of": "Pernikahan Dari",
+    "official_invitation": "Undangan Resmi"
+  },
+  "countdown": {
+    "days": "Hari",
+    "hours": "Jam",
+    "minutes": "Menit",
+    "seconds": "Detik",
+    "subtitle": "Hitung Mundur Menuju",
+    "title": "Hari Bahagia Kami"
+  },
+  "rsvp": {
+      "title": "Konfirmasi Kehadiran",
+      "name_label": "Nama",
+      "name_placeholder": "Masukkan nama Anda",
+      "attendance_label": "Apakah Anda akan hadir?",
+      "message_label": "Pesan",
+      "message_placeholder": "Tuliskan ucapan & doa untuk kami...",
+      "submit_btn": "Kirim Konfirmasi",
+      "attending": "Akan Hadir",
+      "not_attending": "Maaf, Tidak Bisa Hadir",
+      "guests_label": "Jumlah Tamu",
+      "person": "Orang",
+      "deadline_prefix": "Mohon konfirmasi kehadiran Anda sebelum",
+      "success_title": "Terima Kasih!",
+      "success_message": "Konfirmasi kehadiran Anda telah terkirim."
+  },
+  "details": {
+      "save_the_date": "Save the Date",
+      "title": "Waktu & Lokasi",
+      "add_to_calendar": "Tambah ke Kalender",
+      "location_title": "Lokasi Acara",
+      "map_hint": "Klik untuk Eksplorasi Peta",
+      "open_maps": "Buka Google Maps",
+      "copy_address": "Salin Alamat",
+      "address_copied": "Alamat Disalin!"
+  },
+  "footer": {
+      "share_moment": "Bagikan Momen Anda",
+      "use_hashtag": "Gunakan hashtag ini di media sosial Anda",
+      "wedding_gift": "Wedding Gift",
+      "gift_message": "Kehadiran Anda adalah hadiah terbesar bagi kami. Namun jika Anda ingin memberikan hadiah, kami telah menyiapkan wedding registry.",
+      "view_registry": "Lihat Wedding Registry",
+      "thank_you": "Terima Kasih Atas Doa & Kehadiran Anda",
+      "made_with": "Dibuat dengan",
+      "by": "oleh",
+      "rights_reserved": "All Rights Reserved"
+  },
+  "cta": {
+      "promo_badge": "Promo Spesial - Diskon 20%",
+      "title": "Suka dengan Undangan Ini? 💕",
+      "subtitle": "Buat undangan pernikahan digital yang elegan dan modern.",
+      "subtitle_highlight": "Gratis revisi, custom design, dan admin panel untuk kelola sendiri!",
+      "feature_couples": "100+ Pasangan",
+      "feature_ordered": "Sudah Memesan",
+      "feature_rating": "Rating 4.9/5",
+      "feature_reviews": "Dari 50+ Review",
+      "feature_package": "Paket Lengkap",
+      "feature_price": "Mulai dari 100K",
+      "whatsapp_btn": "Pesan via WhatsApp",
+      "pricing_btn": "Lihat Paket & Harga",
+      "trust_badge": "✨ Proses cepat • Support 24/7"
+  },
+  "gallery": {
+      "pretitle": "Our Memories",
+      "title": "Galeri Momen",
+      "description": "Setiap detik adalah kenangan yang tak ternilai."
+  },
+  "wishes": {
+      "pretitle": "Wedding Wishes",
+      "title": "Ucapan & Doa",
+      "description": "Berikan ucapan dan doa terbaik untuk kami",
+      "name_placeholder": "Nama Anda",
+      "message_placeholder": "Tuliskan ucapan dan doa Anda untuk kami...",
+      "submit_btn": "Kirim Ucapan",
+      "submitting": "Mengirim...",
+      "count_label": "Ucapan"
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Panel",
+      "subtitle": "Masukkan password untuk melanjutkan",
+      "password_label": "Password",
+      "password_placeholder": "Masukkan password",
+      "submit_btn": "Login",
+      "error_msg": "Password salah!",
+      "hint": "Hint: password = \"password\""
+    },
+    "layout": {
+      "title": "Admin Panel",
+      "unsaved_changes": "Perubahan Belum Disimpan",
+      "save": "Simpan",
+      "export": "Ekspor",
+      "import": "Impor",
+      "reset": "Reset",
+      "preview": "Pratinjau",
+      "logout_confirm": "Ada perubahan yang belum disimpan. Yakin ingin keluar?",
+      "menu": {
+        "couple": "Data Pasangan",
+        "event": "Detail Acara",
+        "intro": "Pesan Pembuka",
+        "love_story": "Kisah Cinta",
+        "gallery": "Galeri Foto",
+        "theme": "Tema Warna",
+        "rsvp": "Data RSVP"
+      }
+    },
+    "dashboard": {
+      "welcome": "Selamat Datang di Admin Panel",
+      "description": "Kelola semua data undangan pernikahan Anda di satu tempat.",
+      "stat_couple": "Pasangan",
+      "stat_event": "Acara",
+      "stat_gallery": "Galeri",
+      "stat_wishes": "Ucapan",
+      "quick_actions": "Aksi Cepat",
+      "action_preview": "Lihat Website",
+      "action_rsvp": "Cek RSVP"
+    },
+    "couple": {
+      "title": "Data Pasangan",
+      "subtitle": "Edit informasi mempelai wanita dan pria",
+      "bride": "Mempelai Wanita",
+      "groom": "Mempelai Pria",
+      "nickname": "Nama Panggilan",
+      "fullname": "Nama Lengkap",
+      "parents": "Nama Orang Tua (Opsional)",
+      "photo": "Foto (Opsional)",
+      "upload_photo": "Upload Foto"
+    },
+    "event": {
+      "title": "Detail Acara",
+      "subtitle": "Edit informasi waktu dan lokasi acara pernikahan",
+      "wedding_date": "Tanggal Pernikahan",
+      "auto_sync_info": "💡 <strong>Auto-sync:</strong> Tanggal Akad & Resepsi otomatis mengikuti tanggal ini. Jika ingin tanggal berbeda, edit manual di bawah.",
+      "ceremony": "Akad Nikah",
+      "reception": "Resepsi",
+      "label_title": "Judul",
+      "label_date": "Tanggal",
+      "label_time": "Waktu",
+      "label_venue": "Tempat",
+      "label_address": "Alamat",
+      "label_gcal": "Google Calendar URL",
+      "sync_btn": "Sync dari tanggal utama",
+      "sync_hint": "Klik tombol sync untuk auto-fill dari tanggal utama",
+      "maps_title": "Google Maps",
+      "embed_url": "Embed URL",
+      "direction_url": "Direction URL"
+    },
+    "gallery": {
+      "title": "Galeri Foto",
+      "subtitle": "Upload foto-foto untuk galeri",
+      "add_photo": "Tambah Foto",
+      "upload_text": "Upload Foto",
+      "caption_placeholder": "Caption (opsional)",
+      "empty_state": "Belum ada foto. Klik tombol \"Tambah Foto\" untuk menambahkan."
+    },
+    "intro": {
+      "title": "Pesan Pembuka",
+      "subtitle": "Edit teks pembuka undangan dan background hero section",
+      "hero_bg": "Background Hero Section",
+      "hero_bg_hint": "Ukuran disarankan: 1920x1080px (landscape) | Maksimal: 2MB (untuk upload)",
+      "upload_file": "Upload File",
+      "use_url": "Pakai URL",
+      "click_upload": "Klik untuk upload gambar",
+      "paste_url": "Paste URL gambar dari Unsplash, Imgur, atau hosting lainnya",
+      "label_subtitle": "Subtitle",
+      "label_title": "Title",
+      "label_message": "Message",
+      "hint_subtitle": "Teks kecil di atas judul utama",
+      "hint_title": "Judul utama section intro",
+      "hint_message": "Pesan undangan lengkap",
+      "preview": "Preview"
+    },
+    "love_story": {
+      "title": "Kisah Cinta",
+      "subtitle": "Edit timeline perjalanan cinta Anda",
+      "add_btn": "Tambah",
+      "year": "Tahun",
+      "story_title": "Judul",
+      "description": "Deskripsi",
+      "empty_state": "Belum ada timeline. Klik tombol \"Tambah\" untuk menambahkan."
+    },
+    "theme": {
+      "title": "Tema Warna",
+      "subtitle": "Kustomisasi warna tema website",
+      "primary": "Primary Color",
+      "secondary": "Secondary Color",
+      "accent": "Accent Color",
+      "hint_primary": "Warna utama (tombol, aksen, dll)",
+      "hint_secondary": "Warna sekunder (teks heading, dll)",
+      "hint_accent": "Warna aksen (dekorasi, border, dll)",
+      "presets": "Tema Preset",
+      "preview": "Preview",
+      "note": "<strong>Note:</strong> Perubahan warna tema memerlukan refresh halaman untuk diterapkan sepenuhnya di seluruh website."
+    },
+    "rsvp": {
+      "title": "Data RSVP",
+      "subtitle": "Kelola dan ekspor data konfirmasi kehadiran tamu",
+      "export_csv": "Export CSV",
+      "clear_all": "Hapus Semua",
+      "total_response": "Total Respon",
+      "attending": "Hadir",
+      "not_attending": "Tidak Hadir",
+      "total_guests": "Total Tamu",
+      "empty_state": "Belum ada data RSVP",
+      "table": {
+        "no": "No",
+        "name": "Nama",
+        "guests": "Jumlah Tamu",
+        "attendance": "Kehadiran",
+        "message": "Pesan",
+        "time": "Waktu Submit",
+        "status_present": "Hadir",
+        "status_absent": "Tidak Hadir"
+      }
+    }
+  },
+  "common": {
+      "loading": "Memuat..."
+  }
+}

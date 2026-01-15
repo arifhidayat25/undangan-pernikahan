@@ -1,12 +1,15 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Lock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 interface AdminLoginProps {
   onLogin: () => void;
 }
 
 export function AdminLogin({ onLogin }: AdminLoginProps) {
+  const { t } = useTranslation();
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
@@ -21,7 +24,10 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAE6E8] to-[#F4C2C2] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#FAE6E8] to-[#F4C2C2] flex items-center justify-center px-4 relative">
+      <div className="absolute top-4 right-4">
+        <LanguageSwitcher />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -35,10 +41,10 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
             className="text-3xl text-[var(--color-secondary)] mb-2"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Admin Panel
+            {t('admin.login.title')}
           </h1>
           <p className="text-[var(--color-secondary)]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            Masukkan password untuk melanjutkan
+            {t('admin.login.subtitle')}
           </p>
         </div>
 
@@ -49,7 +55,7 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
               className="block text-sm font-medium text-[var(--color-secondary)] mb-2"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              Password
+              {t('admin.login.password_label')}
             </label>
             <input
               type="password"
@@ -59,7 +65,7 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
               className={`w-full px-4 py-3 rounded-lg border ${
                 error ? 'border-red-500' : 'border-[var(--color-primary)]/30'
               } focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition-all`}
-              placeholder="Masukkan password"
+              placeholder={t('admin.login.password_placeholder')}
               autoFocus
             />
             {error && (
@@ -68,7 +74,7 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
                 animate={{ opacity: 1 }}
                 className="text-red-500 text-sm mt-2"
               >
-                Password salah!
+                {t('admin.login.error_msg')}
               </motion.p>
             )}
           </div>
@@ -78,12 +84,12 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
             className="w-full py-3 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[#A8636B] transition-colors font-medium"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Login
+            {t('admin.login.submit_btn')}
           </button>
         </form>
 
         <p className="text-center text-sm text-[var(--color-secondary)] mt-6">
-          Hint: password = "password"
+          {t('admin.login.hint')}
         </p>
       </motion.div>
     </div>

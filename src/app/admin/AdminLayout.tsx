@@ -19,6 +19,8 @@ import {
 } from 'lucide-react';
 import { useWeddingData } from '../../context/WeddingDataContext';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -26,21 +28,23 @@ interface AdminLayoutProps {
   onSectionChange: (section: string) => void;
 }
 
-const sections = [
-  { id: 'couple', label: 'Data Pasangan', icon: Users },
-  { id: 'event', label: 'Detail Acara', icon: Calendar },
-  { id: 'intro', label: 'Pesan Pembuka', icon: MessageSquare },
-  { id: 'love-story', label: 'Love Story', icon: Heart },
-  { id: 'gallery', label: 'Galeri Foto', icon: Image },
-  { id: 'theme', label: 'Tema Warna', icon: Palette },
-  { id: 'rsvp', label: 'Data RSVP', icon: ListChecks },
-];
-
 export function AdminLayout({ children, activeSection, onSectionChange }: AdminLayoutProps) {
+  const { t } = useTranslation();
   const { saveData, exportData, resetData, hasUnsavedChanges } = useWeddingData();
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
+
+  // Define sections inside component to use translations
+  const sections = [
+    { id: 'couple', label: t('admin.layout.menu.couple'), icon: Users },
+    { id: 'event', label: t('admin.layout.menu.event'), icon: Calendar },
+    { id: 'intro', label: t('admin.layout.menu.intro'), icon: MessageSquare },
+    { id: 'love-story', label: t('admin.layout.menu.love_story'), icon: Heart },
+    { id: 'gallery', label: t('admin.layout.menu.gallery'), icon: Image },
+    { id: 'theme', label: t('admin.layout.menu.theme'), icon: Palette },
+    { id: 'rsvp', label: t('admin.layout.menu.rsvp'), icon: ListChecks },
+  ];
 
   const handleImport = () => {
     const input = document.createElement('input');
@@ -58,7 +62,7 @@ export function AdminLayout({ children, activeSection, onSectionChange }: AdminL
 
   const handleLogout = () => {
     if (hasUnsavedChanges) {
-      if (confirm('Ada perubahan yang belum disimpan. Yakin ingin keluar?')) {
+      if (confirm(t('admin.layout.logout_confirm'))) {
         navigate('/');
       }
     } else {
@@ -82,23 +86,23 @@ export function AdminLayout({ children, activeSection, onSectionChange }: AdminL
               className="text-2xl text-[var(--color-secondary)]"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Admin Panel
+              {t('admin.layout.title')}
             </h1>
             {hasUnsavedChanges && (
               <span className="px-3 py-1 bg-orange-100 text-orange-700 text-sm rounded-full">
-                Unsaved Changes
+                {t('admin.layout.unsaved_changes')}
               </span>
             )}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <button
               onClick={saveData}
               className="flex items-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[#A8636B] transition-colors"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               <Save className="w-4 h-4" />
-              <span className="hidden sm:inline">Save</span>
+              <span className="hidden sm:inline">{t('admin.layout.save')}</span>
             </button>
 
             <button
@@ -106,7 +110,7 @@ export function AdminLayout({ children, activeSection, onSectionChange }: AdminL
               className="flex items-center gap-2 px-4 py-2 bg-white text-[var(--color-primary)] border border-[var(--color-primary)] rounded-lg hover:bg-[#FFF5F5] transition-colors"
             >
               <Download className="w-4 h-4" />
-              <span className="hidden sm:inline">Export</span>
+              <span className="hidden sm:inline">{t('admin.layout.export')}</span>
             </button>
 
             <button
@@ -114,7 +118,7 @@ export function AdminLayout({ children, activeSection, onSectionChange }: AdminL
               className="flex items-center gap-2 px-4 py-2 bg-white text-[var(--color-primary)] border border-[var(--color-primary)] rounded-lg hover:bg-[#FFF5F5] transition-colors"
             >
               <Upload className="w-4 h-4" />
-              <span className="hidden sm:inline">Import</span>
+              <span className="hidden sm:inline">{t('admin.layout.import')}</span>
             </button>
 
             <button
@@ -122,24 +126,39 @@ export function AdminLayout({ children, activeSection, onSectionChange }: AdminL
               className="flex items-center gap-2 px-4 py-2 bg-white text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <RotateCcw className="w-4 h-4" />
-              <span className="hidden sm:inline">Reset</span>
+              <span className="hidden sm:inline">{t('admin.layout.reset')}</span>
             </button>
 
-            <button
+             <button
               onClick={() => navigate('/')}
               className="flex items-center gap-2 px-4 py-2 bg-white text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <Home className="w-4 h-4" />
-              <span className="hidden sm:inline">Preview</span>
+              <span className="hidden sm:inline">{t('admin.layout.preview')}</span>
             </button>
+
+             <div className="ml-2 border-l pl-2">
+                <LanguageSwitcher />
+             </div>
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 bg-white text-red-600 border border-red-300 rounded-lg hover:bg-red-50 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-white text-red-600 border border-red-300 rounded-lg hover:bg-red-50 transition-colors ml-2"
             >
               <LogOut className="w-4 h-4" />
             </button>
           </div>
+
+           {/* Mobile Actions Dropdown or simplified view could go here, for now keeping desktop structure mostly */}
+            <div className="md:hidden flex items-center gap-2">
+                 <LanguageSwitcher />
+                 <button
+                    onClick={handleLogout}
+                   className="p-2 bg-white text-red-600 border border-red-300 rounded-lg hover:bg-red-50 transition-colors"
+                 >
+                   <LogOut className="w-4 h-4" />
+                 </button>
+            </div>
         </div>
       </header>
 
@@ -154,6 +173,24 @@ export function AdminLayout({ children, activeSection, onSectionChange }: AdminL
               className="fixed lg:sticky top-[73px] left-0 h-[calc(100vh-73px)] w-64 bg-white/80 backdrop-blur-md border-r border-white/60 z-30 overflow-y-auto"
             >
               <nav className="p-4 space-y-2">
+                 {/* Mobile only actions in sidebar */}
+                <div className="lg:hidden space-y-2 mb-4 pb-4 border-b border-gray-200">
+                    <button
+                        onClick={saveData}
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-[var(--color-secondary)] hover:bg-[var(--color-primary)]/10"
+                    >
+                        <Save className="w-5 h-5" />
+                        <span>{t('admin.layout.save')}</span>
+                    </button>
+                    <button
+                        onClick={() => navigate('/')}
+                         className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-[var(--color-secondary)] hover:bg-[var(--color-primary)]/10"
+                    >
+                         <Home className="w-5 h-5" />
+                         <span>{t('admin.layout.preview')}</span>
+                    </button>
+                </div>
+
                 {sections.map((section) => {
                   const Icon = section.icon;
                   return (

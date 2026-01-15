@@ -1,9 +1,11 @@
 import { motion } from 'motion/react';
 import { MessageCircle, Package, Sparkles, Users, Star } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { PricingModal } from './PricingModal';
 
 export function CtaSection() {
+  const { t } = useTranslation();
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const whatsappNumber = '6285942550791'; // Ganti dengan nomor WhatsApp Anda
   const whatsappMessage = encodeURIComponent(
@@ -47,7 +49,7 @@ export function CtaSection() {
               className="text-sm font-semibold text-[var(--color-secondary)]"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              Promo Spesial - Diskon 20%
+              {t('cta.promo_badge')}
             </span>
           </div>
         </motion.div>
@@ -64,16 +66,16 @@ export function CtaSection() {
             className="text-4xl md:text-5xl mb-4 text-[var(--color-secondary)]"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Suka dengan Undangan Ini? 💕
+            {t('cta.title')}
           </h2>
           <p
             className="text-lg md:text-xl text-[var(--color-secondary)]/80 max-w-2xl mx-auto mb-6"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Buat undangan pernikahan digital yang elegan dan modern.
+            {t('cta.subtitle')}
             <br />
             <span className="font-semibold text-[var(--color-primary)]">
-              Gratis revisi, custom design, dan admin panel untuk kelola sendiri!
+              {t('cta.subtitle_highlight')}
             </span>
           </p>
         </motion.div>
@@ -92,10 +94,10 @@ export function CtaSection() {
             </div>
             <div className="text-left">
               <p className="text-sm font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                100+ Pasangan
+                {t('cta.feature_couples')}
               </p>
               <p className="text-xs text-[var(--color-secondary)]/70" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Sudah Memesan
+                {t('cta.feature_ordered')}
               </p>
             </div>
           </div>
@@ -106,10 +108,10 @@ export function CtaSection() {
             </div>
             <div className="text-left">
               <p className="text-sm font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Rating 4.9/5
+                {t('cta.feature_rating')}
               </p>
               <p className="text-xs text-[var(--color-secondary)]/70" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Dari 50+ Review
+                {t('cta.feature_reviews')}
               </p>
             </div>
           </div>
@@ -120,10 +122,10 @@ export function CtaSection() {
             </div>
             <div className="text-left">
               <p className="text-sm font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Paket Lengkap
+                {t('cta.feature_package')}
               </p>
               <p className="text-xs text-[var(--color-secondary)]/70" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Mulai dari 100K
+                {t('cta.feature_price')}
               </p>
             </div>
           </div>
@@ -153,7 +155,7 @@ export function CtaSection() {
             />
             <span className="relative z-10 flex items-center justify-center gap-2 font-semibold">
               <MessageCircle className="w-5 h-5" />
-              Pesan via WhatsApp
+              {t('cta.whatsapp_btn')}
             </span>
           </motion.button>
 
@@ -167,7 +169,7 @@ export function CtaSection() {
           >
             <span className="flex items-center justify-center gap-2">
               <Package className="w-5 h-5" />
-              Lihat Paket & Harga
+              {t('cta.pricing_btn')}
             </span>
           </motion.button>
         </motion.div>
@@ -181,7 +183,7 @@ export function CtaSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          ✨ Proses cepat • Support 24/7
+          {t('cta.trust_badge')}
         </motion.p>
       </motion.div>
 

@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useWeddingData } from '../../../context/WeddingDataContext';
+import { useTranslation } from 'react-i18next';
 
 export function ThemeEditor() {
+  const { t } = useTranslation();
   const { data, updateData } = useWeddingData();
   const [theme, setTheme] = useState(data.theme);
 
@@ -43,10 +45,10 @@ export function ThemeEditor() {
     <div className="space-y-8">
       <div>
         <h2 className="text-3xl text-[var(--color-secondary)] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Tema Warna
+          {t('admin.theme.title')}
         </h2>
         <p className="text-[#8B5E66] mb-8" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-          Kustomisasi warna tema website
+          {t('admin.theme.subtitle')}
         </p>
       </div>
 
@@ -54,7 +56,7 @@ export function ThemeEditor() {
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80 space-y-6">
         <div>
           <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-            Primary Color
+            {t('admin.theme.primary')}
           </label>
           <div className="flex items-center gap-4">
             <input
@@ -71,12 +73,12 @@ export function ThemeEditor() {
               placeholder="var(--color-primary)"
             />
           </div>
-          <p className="text-xs text-gray-500 mt-1">Warna utama (tombol, aksen, dll)</p>
+          <p className="text-xs text-gray-500 mt-1">{t('admin.theme.hint_primary')}</p>
         </div>
 
         <div>
           <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-            Secondary Color
+            {t('admin.theme.secondary')}
           </label>
           <div className="flex items-center gap-4">
             <input
@@ -93,12 +95,12 @@ export function ThemeEditor() {
               placeholder="var(--color-secondary)"
             />
           </div>
-          <p className="text-xs text-gray-500 mt-1">Warna sekunder (teks heading, dll)</p>
+          <p className="text-xs text-gray-500 mt-1">{t('admin.theme.hint_secondary')}</p>
         </div>
 
         <div>
           <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-            Accent Color
+            {t('admin.theme.accent')}
           </label>
           <div className="flex items-center gap-4">
             <input
@@ -115,13 +117,13 @@ export function ThemeEditor() {
               placeholder="var(--color-accent)"
             />
           </div>
-          <p className="text-xs text-gray-500 mt-1">Warna aksen (dekorasi, border, dll)</p>
+          <p className="text-xs text-gray-500 mt-1">{t('admin.theme.hint_accent')}</p>
         </div>
       </div>
 
       {/* Preset Themes */}
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80">
-        <h3 className="text-lg font-medium text-[var(--color-secondary)] mb-4">Tema Preset</h3>
+        <h3 className="text-lg font-medium text-[var(--color-secondary)] mb-4">{t('admin.theme.presets')}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {presetThemes.map((preset) => (
             <button
@@ -151,14 +153,14 @@ export function ThemeEditor() {
 
       {/* Preview */}
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80">
-        <h3 className="text-lg font-medium text-[var(--color-secondary)] mb-4">Preview</h3>
+        <h3 className="text-lg font-medium text-[var(--color-secondary)] mb-4">{t('admin.theme.preview')}</h3>
         <div className="space-y-4">
           <div className="flex items-center gap-4">
             <div
               className="w-full h-16 rounded-lg flex items-center justify-center text-white font-medium"
               style={{ backgroundColor: theme.primaryColor }}
             >
-              Primary Color
+              primaryColor
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -166,7 +168,7 @@ export function ThemeEditor() {
               className="w-full h-16 rounded-lg flex items-center justify-center text-white font-medium"
               style={{ backgroundColor: theme.secondaryColor }}
             >
-              Secondary Color
+              secondaryColor
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -174,16 +176,14 @@ export function ThemeEditor() {
               className="w-full h-16 rounded-lg flex items-center justify-center text-white font-medium"
               style={{ backgroundColor: theme.accentColor }}
             >
-              Accent Color
+              accentColor
             </div>
           </div>
         </div>
       </div>
 
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-        <p className="text-sm text-yellow-800">
-          <strong>Note:</strong> Perubahan warna tema memerlukan refresh halaman untuk diterapkan sepenuhnya di seluruh website.
-        </p>
+        <p className="text-sm text-yellow-800" dangerouslySetInnerHTML={{ __html: t('admin.theme.note') }} />
       </div>
     </div>
   );

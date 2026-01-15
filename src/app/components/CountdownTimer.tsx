@@ -1,9 +1,11 @@
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useWeddingData } from '../../context/WeddingDataContext';
 
 export function CountdownTimer() {
   const { data } = useWeddingData();
+  const { t } = useTranslation();
   const weddingDate = new Date(data.event.weddingDate).getTime();
   
   const [timeLeft, setTimeLeft] = useState({
@@ -32,10 +34,10 @@ export function CountdownTimer() {
   }, [weddingDate]);
 
   const timeUnits = [
-    { value: timeLeft.days, label: 'Hari' },
-    { value: timeLeft.hours, label: 'Jam' },
-    { value: timeLeft.minutes, label: 'Menit' },
-    { value: timeLeft.seconds, label: 'Detik' },
+    { value: timeLeft.days, label: t('countdown.days') },
+    { value: timeLeft.hours, label: t('countdown.hours') },
+    { value: timeLeft.minutes, label: t('countdown.minutes') },
+    { value: timeLeft.seconds, label: t('countdown.seconds') },
   ];
 
   return (
@@ -61,7 +63,7 @@ export function CountdownTimer() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          Hitung Mundur Menuju
+          {t('countdown.subtitle')}
         </motion.p>
 
         <motion.h2
@@ -72,7 +74,7 @@ export function CountdownTimer() {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          Hari Bahagia Kami
+          {t('countdown.title')}
         </motion.h2>
 
         <motion.div
@@ -140,7 +142,7 @@ export function CountdownTimer() {
           viewport={{ once: true }}
           transition={{ delay: 1.2 }}
         >
-          Kami tidak sabar untuk berbagi kebahagiaan ini bersama Anda! 💕
+           {/* Message typically "We can't wait to share..." */}
         </motion.p>
       </motion.div>
     </section>

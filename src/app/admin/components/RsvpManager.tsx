@@ -2,8 +2,10 @@ import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Download, Trash2, Users, UserCheck, UserX, Calendar } from 'lucide-react';
 import { getAllRsvps, getRsvpStats, exportRsvpToCsv, clearAllRsvps, RsvpEntry } from '../../../utils/rsvpStorage';
+import { useTranslation } from 'react-i18next';
 
 export function RsvpManager() {
+  const { t } = useTranslation();
   const [rsvps, setRsvps] = useState<RsvpEntry[]>([]);
   const [stats, setStats] = useState({ total: 0, attending: 0, notAttending: 0, totalGuests: 0 });
 
@@ -45,13 +47,13 @@ export function RsvpManager() {
             className="text-3xl text-[var(--color-secondary)] mb-2"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Data RSVP
+            {t('admin.rsvp.title')}
           </h2>
           <p
             className="text-[var(--color-secondary)]/70"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Kelola dan ekspor data konfirmasi kehadiran tamu
+            {t('admin.rsvp.subtitle')}
           </p>
         </div>
         <div className="flex gap-2">
@@ -62,7 +64,7 @@ export function RsvpManager() {
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             <Download className="w-4 h-4" />
-            Export CSV
+            {t('admin.rsvp.export_csv')}
           </button>
           <button
             onClick={handleClear}
@@ -71,7 +73,7 @@ export function RsvpManager() {
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             <Trash2 className="w-4 h-4" />
-            Hapus Semua
+            {t('admin.rsvp.clear_all')}
           </button>
         </div>
       </div>
@@ -88,7 +90,7 @@ export function RsvpManager() {
             </div>
             <div>
               <p className="text-sm text-[var(--color-secondary)]/70" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Total Respon
+                {t('admin.rsvp.total_response')}
               </p>
               <p className="text-2xl font-bold text-[var(--color-secondary)]" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {stats.total}
@@ -107,7 +109,7 @@ export function RsvpManager() {
             </div>
             <div>
               <p className="text-sm text-[var(--color-secondary)]/70" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Hadir
+                {t('admin.rsvp.attending')}
               </p>
               <p className="text-2xl font-bold text-[var(--color-secondary)]" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {stats.attending}
@@ -126,7 +128,7 @@ export function RsvpManager() {
             </div>
             <div>
               <p className="text-sm text-[var(--color-secondary)]/70" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Tidak Hadir
+                {t('admin.rsvp.not_attending')}
               </p>
               <p className="text-2xl font-bold text-[var(--color-secondary)]" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {stats.notAttending}
@@ -145,7 +147,7 @@ export function RsvpManager() {
             </div>
             <div>
               <p className="text-sm text-[var(--color-secondary)]/70" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Total Tamu
+                {t('admin.rsvp.total_guests')}
               </p>
               <p className="text-2xl font-bold text-[var(--color-secondary)]" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {stats.totalGuests}
@@ -164,7 +166,7 @@ export function RsvpManager() {
               className="text-lg text-[var(--color-secondary)]/70"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              Belum ada data RSVP
+              {t('admin.rsvp.empty_state')}
             </p>
           </div>
         ) : (
@@ -176,37 +178,37 @@ export function RsvpManager() {
                     className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-secondary)]"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
-                    No
+                    {t('admin.rsvp.table.no')}
                   </th>
                   <th
                     className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-secondary)]"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
-                    Nama
+                    {t('admin.rsvp.table.name')}
                   </th>
                   <th
                     className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-secondary)]"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
-                    Jumlah Tamu
+                    {t('admin.rsvp.table.guests')}
                   </th>
                   <th
                     className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-secondary)]"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
-                    Kehadiran
+                    {t('admin.rsvp.table.attendance')}
                   </th>
                   <th
                     className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-secondary)]"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
-                    Pesan
+                    {t('admin.rsvp.table.message')}
                   </th>
                   <th
                     className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-secondary)]"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
-                    Waktu Submit
+                    {t('admin.rsvp.table.time')}
                   </th>
                 </tr>
               </thead>
@@ -246,7 +248,7 @@ export function RsvpManager() {
                         }`}
                         style={{ fontFamily: "'Montserrat', sans-serif" }}
                       >
-                        {rsvp.attendance === 'hadir' ? 'Hadir' : 'Tidak Hadir'}
+                         {rsvp.attendance === 'hadir' ? t('admin.rsvp.table.status_present') : t('admin.rsvp.table.status_absent')}
                       </span>
                     </td>
                     <td

@@ -1,7 +1,9 @@
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 import { Heart } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useWeddingData } from '../../context/WeddingDataContext';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import confetti from 'canvas-confetti';
 
 interface OpeningCardProps {
@@ -10,6 +12,7 @@ interface OpeningCardProps {
 
 export function OpeningCard({ onOpen }: OpeningCardProps) {
   const { data } = useWeddingData();
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isSealed, setIsSealed] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -85,6 +88,11 @@ export function OpeningCard({ onOpen }: OpeningCardProps) {
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
+            {/* Language Switcher - Top Right */}
+            <div className="absolute top-6 right-6 z-50">
+              <LanguageSwitcher />
+            </div>
+
             {/* Background Texture */}
             <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
             
@@ -118,7 +126,7 @@ export function OpeningCard({ onOpen }: OpeningCardProps) {
                              <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-[var(--color-primary)]/40" />
                              <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-[var(--color-primary)]/40" />
 
-                            <p className="text-[var(--color-primary)] text-xs font-medium tracking-[0.2em] uppercase mb-4">The Wedding of</p>
+                            <p className="text-[var(--color-primary)] text-xs font-medium tracking-[0.2em] uppercase mb-4">{t('opening.wedding_of')}</p>
                             <h2 className="text-2xl text-[var(--color-secondary)] mb-2 leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
                                 {data.couple.bride.name} <span className="text-[var(--color-primary)] mx-1">&</span> {data.couple.groom.name}
                             </h2>
@@ -161,7 +169,7 @@ export function OpeningCard({ onOpen }: OpeningCardProps) {
                                     <Heart className="w-6 h-6 text-[#E8C0C0] drop-shadow-md" fill="currentColor" />
                                 </div>
                                 <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                                    <p className="text-[10px] font-bold tracking-[0.2em] text-[#8B5E66] uppercase bg-white/80 px-2 py-0.5 rounded-full backdrop-blur-sm">Buka Undangan</p>
+                                    <p className="text-[10px] font-bold tracking-[0.2em] text-[#8B5E66] uppercase bg-white/80 px-2 py-0.5 rounded-full backdrop-blur-sm">{t('opening.open_btn')}</p>
                                 </div>
                             </motion.div>
                          </div>
@@ -171,7 +179,7 @@ export function OpeningCard({ onOpen }: OpeningCardProps) {
             </div>
             
             <p className="absolute bottom-10 text-[var(--color-secondary)]/60 text-sm tracking-widest uppercase animate-pulse">
-                Klik segel untuk membuka
+                {t('opening.click_hint')}
             </p>
         </motion.div>
       )}

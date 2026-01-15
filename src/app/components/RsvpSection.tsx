@@ -1,11 +1,13 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { saveRsvp } from '../../utils/rsvpStorage';
 import { useWeddingData } from '../../context/WeddingDataContext';
 
 export function RsvpSection() {
   const { data } = useWeddingData();
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     guests: '1',
@@ -21,13 +23,11 @@ export function RsvpSection() {
     const deadline = new Date(weddingDate);
     deadline.setDate(deadline.getDate() - 7);
     
-    const day = deadline.getDate();
-    const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
-                        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const month = monthNames[deadline.getMonth()];
-    const year = deadline.getFullYear();
-    
-    return `${day} ${month} ${year}`;
+    return deadline.toLocaleDateString(i18n.language === 'id' ? 'id-ID' : 'en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -81,13 +81,13 @@ export function RsvpSection() {
             className="text-4xl md:text-5xl mb-4 text-[var(--color-secondary)]"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Konfirmasi Kehadiran
+            {t('rsvp.title')}
           </h2>
           <p
             className="text-[var(--color-secondary)]"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Mohon konfirmasi kehadiran Anda sebelum {getRsvpDeadline()}
+            {t('rsvp.deadline_prefix', 'Mohon konfirmasi kehadiran Anda sebelum')} {getRsvpDeadline()}
           </p>
         </motion.div>
 
@@ -109,7 +109,7 @@ export function RsvpSection() {
                   className="block text-sm mb-2 text-[var(--color-secondary)] font-medium"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
-                  Nama Lengkap *
+                  {t('rsvp.name_label')} *
                 </label>
                 <input
                   type="text"
@@ -120,7 +120,7 @@ export function RsvpSection() {
                   onBlur={() => setFocusedField(null)}
                   className="w-full px-4 py-3 border-b border-[var(--color-primary)]/50 bg-transparent focus:border-[var(--color-primary)] outline-none transition-colors text-[var(--color-secondary)]"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  placeholder="Masukkan nama Anda"
+                  placeholder={t('rsvp.name_placeholder', 'Masukkan nama Anda')}
                 />
               </motion.div>
 
@@ -133,7 +133,7 @@ export function RsvpSection() {
                   className="block text-sm mb-2 text-[var(--color-secondary)] font-medium"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
-                  Jumlah Tamu *
+                  {t('rsvp.guests_label')} *
                 </label>
                 <select
                   required
@@ -144,11 +144,11 @@ export function RsvpSection() {
                   className="w-full px-4 py-3 border-b border-[var(--color-primary)]/50 bg-transparent focus:border-[var(--color-primary)] outline-none transition-colors text-[var(--color-secondary)]"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
-                  <option value="1">1 Orang</option>
-                  <option value="2">2 Orang</option>
-                  <option value="3">3 Orang</option>
-                  <option value="4">4 Orang</option>
-                  <option value="5">5+ Orang</option>
+                  <option value="1">1 {t('rsvp.person', 'Orang')}</option>
+                  <option value="2">2 {t('rsvp.person', 'Orang')}</option>
+                  <option value="3">3 {t('rsvp.person', 'Orang')}</option>
+                  <option value="4">4 {t('rsvp.person', 'Orang')}</option>
+                  <option value="5">5+ {t('rsvp.person', 'Orang')}</option>
                 </select>
               </motion.div>
 
@@ -158,7 +158,7 @@ export function RsvpSection() {
                   className="block text-sm mb-3 text-[var(--color-secondary)] font-medium"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
-                  Konfirmasi Kehadiran *
+                  {t('rsvp.attendance_label')} *
                 </label>
                 <div className="flex gap-4">
                   <motion.label
@@ -183,7 +183,7 @@ export function RsvpSection() {
                       }`}
                       style={{ fontFamily: "'Montserrat', sans-serif" }}
                     >
-                      Hadir
+                      {t('rsvp.attending')}
                     </div>
                   </motion.label>
 
@@ -209,7 +209,7 @@ export function RsvpSection() {
                       }`}
                       style={{ fontFamily: "'Montserrat', sans-serif" }}
                     >
-                      Tidak Hadir
+                      {t('rsvp.not_attending')}
                     </div>
                   </motion.label>
                 </div>
@@ -224,7 +224,7 @@ export function RsvpSection() {
                   className="block text-sm mb-2 text-[var(--color-secondary)] font-medium"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
-                  Pesan & Doa (Opsional)
+                  {t('rsvp.message_label')}
                 </label>
                 <textarea
                   value={formData.message}
@@ -234,7 +234,7 @@ export function RsvpSection() {
                   rows={4}
                   className="w-full px-4 py-3 border-b border-[var(--color-primary)]/50 bg-transparent focus:border-[var(--color-primary)] outline-none transition-colors resize-none text-[var(--color-secondary)]"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  placeholder="Tuliskan ucapan & doa untuk kami..."
+                  placeholder={t('rsvp.message_placeholder', 'Tuliskan ucapan & doa untuk kami...')}
                 />
               </motion.div>
 
@@ -247,7 +247,7 @@ export function RsvpSection() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400 }}
               >
-                Kirim Konfirmasi
+                {t('rsvp.submit_btn')}
               </motion.button>
             </form>
           ) : (
@@ -269,13 +269,13 @@ export function RsvpSection() {
                 className="text-2xl mb-2 text-[var(--color-secondary)]"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
-                Terima Kasih!
+                {t('rsvp.success_title')}
               </h3>
               <p
                 className="text-[var(--color-secondary)]"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                Konfirmasi Anda telah kami terima
+                {t('rsvp.success_message')}
               </p>
             </motion.div>
           )}

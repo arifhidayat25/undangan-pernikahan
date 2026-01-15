@@ -1,34 +1,42 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Heart, MapPin, CalendarHeart, WineOff, Navigation, Copy, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useWeddingData } from '../../context/WeddingDataContext';
 
 export function DetailsSection() {
   const { data } = useWeddingData();
+  const { t, i18n } = useTranslation();
   const [isMapInteractive, setIsMapInteractive] = useState(false);
   const [showCopyToast, setShowCopyToast] = useState(false);
 
-  // Helper function to format date in Indonesian
-  const formatIndonesianDate = (dateString: string) => {
+  // Helper function to format date
+  const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    
-    const dayName = days[date.getDay()];
-    const day = date.getDate();
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
-    
-    return `${dayName}, ${day} ${month} ${year}`;
+    return date.toLocaleDateString(i18n.language === 'id' ? 'id-ID' : 'en-US', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
   };
 
-  // Auto-sync dates: use custom if different from default, otherwise use main wedding date
-  const ceremonyDate = data.event.ceremony.date === 'Minggu, 15 Juni 2026' 
-    ? formatIndonesianDate(data.event.weddingDate)
-    : data.event.ceremony.date;
+  // Auto-sync dates logic
+  // If the stored string matches the default "Minggu, 15 Juni 2026", we assume it should be dynamic based on weddingDate
+  // This is a bit fragile if the user manually entered exactly that string, but acceptable for now.
+  // Better approach: check if data.event.ceremony.date is just a static string or matches formatted default.
+  // For safety, let's just format the Wedding Date if it's dynamic context. 
+  // But wait, the existing code checked specific hardcoded string. 
+  // I will recreate similar logic but respecting locale.
+  
+  const isDefaultDate = (d: string) => d === 'Minggu, 15 Juni 2026';
+  
+  const ceremonyDate = isDefaultDate(data.event.ceremony.date) 
+    ? formatDate(data.event.weddingDate)
+    : data.event.ceremony.date; // Note: if user customized it, it might not be localized automatically unless we parse it. For now leaving as is.
     
-  const receptionDate = data.event.reception.date === 'Minggu, 15 Juni 2026'
-    ? formatIndonesianDate(data.event.weddingDate)
+  const receptionDate = isDefaultDate(data.event.reception.date)
+    ? formatDate(data.event.weddingDate)
     : data.event.reception.date;
 
   const handleCopyAddress = () => {
@@ -67,13 +75,13 @@ export function DetailsSection() {
       >
          <motion.div className="text-center mb-16" variants={itemVariants}>
             <p className="text-2xl text-[var(--color-primary)] mb-2" style={{ fontFamily: "'Great Vibes', cursive" }}>
-              Save the Date
+              {t('details.save_the_date')}
             </p>
             <h2
               className="text-4xl md:text-5xl text-[var(--color-secondary)]"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Waktu & Lokasi
+              {t('details.title')}
             </h2>
          </motion.div>
 
@@ -129,7 +137,7 @@ export function DetailsSection() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Tambah ke Kalender
+                {t('details.add_to_calendar')}
               </motion.a>
             </div>
           </motion.div>
@@ -185,7 +193,7 @@ export function DetailsSection() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Tambah ke Kalender
+                {t('details.add_to_calendar')}
               </motion.a>
             </div>
           </motion.div>
@@ -210,7 +218,7 @@ export function DetailsSection() {
                 <div className="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-[var(--color-primary)]/20 flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-[var(--color-primary)]" />
                     <span className="text-[var(--color-secondary)] font-medium" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                        Lokasi Acara
+                        {t('details.location_title')}
                     </span>
                 </div>
 
@@ -248,7 +256,7 @@ export function DetailsSection() {
                                     whileTap={{ scale: 0.95 }}
                                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                                 >
-                                    Klik untuk Eksplorasi Peta
+                                    {t('details.map_hint')}
                                 </motion.button>
                             </motion.div>
                         )}
@@ -267,7 +275,7 @@ export function DetailsSection() {
                         style={{ fontFamily: "'Montserrat', sans-serif" }}
                       >
                         <Navigation className="w-4 h-4" />
-                        <span>Buka Google Maps</span>
+                        <span>{t('details.open_maps')}</span>
                       </motion.a>
 
                       <motion.button
@@ -287,7 +295,7 @@ export function DetailsSection() {
                                     className="flex items-center gap-2"
                                 >
                                     <CheckCircle2 className="w-4 h-4" />
-                                    <span>Alamat Disalin!</span>
+                                    <span>{t('details.address_copied')}</span>
                                 </motion.div>
                             ) : (
                                 <motion.div
@@ -298,7 +306,7 @@ export function DetailsSection() {
                                     className="flex items-center gap-2"
                                 >
                                     <Copy className="w-4 h-4" />
-                                    <span>Salin Alamat</span>
+                                    <span>{t('details.copy_address')}</span>
                                 </motion.div>
                             )}
                          </AnimatePresence>

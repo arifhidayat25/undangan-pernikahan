@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { Heart, Send, MessageCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface Wish {
   id: number;
@@ -10,6 +11,7 @@ interface Wish {
 }
 
 export function WishesSection() {
+  const { t, i18n } = useTranslation();
   const [wishes, setWishes] = useState<Wish[]>([
     {
       id: 1,
@@ -83,20 +85,20 @@ export function WishesSection() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <MessageCircle className="w-6 h-6 text-[var(--color-primary)]" />
              <p className="text-2xl text-[var(--color-primary)]" style={{ fontFamily: "'Great Vibes', cursive" }}>
-              Wedding Wishes
+              {t('wishes.pretitle')}
             </p>
           </div>
           <h2
             className="text-4xl md:text-5xl mb-4 text-[var(--color-secondary)]"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Ucapan & Doa
+            {t('wishes.title')}
           </h2>
           <p
             className="text-[var(--color-secondary)]"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Berikan ucapan dan doa terbaik untuk kami
+            {t('wishes.description')}
           </p>
         </motion.div>
 
@@ -115,7 +117,7 @@ export function WishesSection() {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Nama Anda"
+                placeholder={t('wishes.name_placeholder')}
                 className="w-full px-5 py-4 border border-white/50 rounded-xl bg-white/50 focus:bg-white focus:border-[var(--color-primary)] outline-none transition-all placeholder:text-[var(--color-secondary)]/60 text-[var(--color-secondary)]"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               />
@@ -126,7 +128,7 @@ export function WishesSection() {
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Tuliskan ucapan dan doa Anda untuk kami..."
+                placeholder={t('wishes.message_placeholder')}
                 rows={4}
                 className="w-full px-5 py-4 border border-white/50 rounded-xl bg-white/50 focus:bg-white focus:border-[var(--color-primary)] outline-none transition-all resize-none placeholder:text-[var(--color-secondary)]/60 text-[var(--color-secondary)]"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
@@ -148,12 +150,12 @@ export function WishesSection() {
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                   />
-                  <span>Mengirim...</span>
+                  <span>{t('wishes.submitting')}</span>
                 </>
               ) : (
                 <>
                   <Send className="w-5 h-5" />
-                  <span>Kirim Ucapan</span>
+                  <span>{t('wishes.submit_btn')}</span>
                 </>
               )}
             </motion.button>
@@ -174,7 +176,7 @@ export function WishesSection() {
               className="text-[var(--color-secondary)]"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              {wishes.length} Ucapan
+              {wishes.length} {t('wishes.count_label')}
             </p>
           </div>
 
@@ -214,7 +216,7 @@ export function WishesSection() {
                         className="text-xs text-[var(--color-secondary)]"
                         style={{ fontFamily: "'Montserrat', sans-serif" }}
                       >
-                        {wish.timestamp.toLocaleDateString('id-ID', {
+                        {wish.timestamp.toLocaleDateString(i18n.language === 'id' ? 'id-ID' : 'en-US', {
                           day: 'numeric',
                           month: 'short',
                           year: 'numeric',

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useWeddingData } from '../../../context/WeddingDataContext';
 import { Upload, X, Link } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function IntroEditor() {
+  const { t } = useTranslation();
   const { data, updateData } = useWeddingData();
   const [intro, setIntro] = useState(data.intro);
   const [uploadMethod, setUploadMethod] = useState<'upload' | 'url'>('upload');
@@ -45,10 +47,10 @@ export function IntroEditor() {
     <div className="space-y-8">
       <div>
         <h2 className="text-3xl text-[var(--color-secondary)] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-          Pesan Pembuka
+          {t('admin.intro.title')}
         </h2>
         <p className="text-[#8B5E66] mb-8" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-          Edit teks pembuka undangan dan background hero section
+          {t('admin.intro.subtitle')}
         </p>
       </div>
 
@@ -56,10 +58,10 @@ export function IntroEditor() {
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80 space-y-4">
         <div>
           <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-            Background Hero Section
+            {t('admin.intro.hero_bg')}
           </label>
           <p className="text-xs text-gray-500 mb-3">
-            Ukuran disarankan: 1920x1080px (landscape) | Maksimal: 2MB (untuk upload)
+            {t('admin.intro.hero_bg_hint')}
           </p>
 
           {/* Tab Buttons */}
@@ -73,7 +75,7 @@ export function IntroEditor() {
               }`}
             >
               <Upload className="w-4 h-4" />
-              Upload File
+              {t('admin.intro.upload_file')}
             </button>
             <button
               onClick={() => setUploadMethod('url')}
@@ -84,7 +86,7 @@ export function IntroEditor() {
               }`}
             >
               <Link className="w-4 h-4" />
-              Pakai URL
+              {t('admin.intro.use_url')}
             </button>
           </div>
           
@@ -102,7 +104,7 @@ export function IntroEditor() {
                 <X className="w-4 h-4" />
               </button>
               <div className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded">
-                Preview
+                {t('admin.intro.preview')}
               </div>
             </div>
           )}
@@ -119,7 +121,7 @@ export function IntroEditor() {
                 }}
               />
               <Upload className="w-8 h-8 text-[var(--color-primary)]/50 mb-2" />
-              <span className="text-sm text-gray-500">Klik untuk upload gambar</span>
+              <span className="text-sm text-gray-500">{t('admin.intro.click_upload')}</span>
               <span className="text-xs text-gray-400 mt-1">Max 2MB</span>
             </label>
           ) : (
@@ -132,7 +134,7 @@ export function IntroEditor() {
                 placeholder="https://example.com/image.jpg"
               />
               <p className="text-xs text-gray-500 mt-1">
-                Paste URL gambar dari Unsplash, Imgur, atau hosting lainnya
+                {t('admin.intro.paste_url')}
               </p>
             </div>
           )}
@@ -142,7 +144,7 @@ export function IntroEditor() {
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80 space-y-6">
         <div>
           <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-            Subtitle
+            {t('admin.intro.label_subtitle')}
           </label>
           <input
             type="text"
@@ -151,12 +153,12 @@ export function IntroEditor() {
             className="w-full px-4 py-2 rounded-lg border border-[var(--color-primary)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
             placeholder="We're getting married!"
           />
-          <p className="text-xs text-gray-500 mt-1">Teks kecil di atas judul utama</p>
+          <p className="text-xs text-gray-500 mt-1">{t('admin.intro.hint_subtitle')}</p>
         </div>
 
         <div>
           <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-            Title
+            {t('admin.intro.label_title')}
           </label>
           <input
             type="text"
@@ -165,12 +167,12 @@ export function IntroEditor() {
             className="w-full px-4 py-2 rounded-lg border border-[var(--color-primary)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
             placeholder="Dengan Penuh Sukacita"
           />
-          <p className="text-xs text-gray-500 mt-1">Judul utama section intro</p>
+          <p className="text-xs text-gray-500 mt-1">{t('admin.intro.hint_title')}</p>
         </div>
 
         <div>
           <label className="block text-sm font-medium text-[var(--color-secondary)] mb-2">
-            Message
+            {t('admin.intro.label_message')}
           </label>
           <textarea
             value={intro.message}
@@ -179,13 +181,13 @@ export function IntroEditor() {
             rows={5}
             placeholder="Kami dengan tulus mengundang Anda..."
           />
-          <p className="text-xs text-gray-500 mt-1">Pesan undangan lengkap</p>
+          <p className="text-xs text-gray-500 mt-1">{t('admin.intro.hint_message')}</p>
         </div>
       </div>
 
       {/* Preview */}
       <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/80">
-        <h3 className="text-lg font-medium text-[var(--color-secondary)] mb-4">Preview</h3>
+        <h3 className="text-lg font-medium text-[var(--color-secondary)] mb-4">{t('admin.intro.preview')}</h3>
         <div className="text-center space-y-4">
           <p className="text-2xl text-[var(--color-primary)]" style={{ fontFamily: "'Great Vibes', cursive" }}>
             {intro.subtitle}
